@@ -7,6 +7,10 @@ usb.on('attach', (device: any) => {
   console.log(device);
 });
 
+usb.on('detach', (device: any) => {
+  console.log(device);
+});
+
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = 'true';
 
 let mainWindow: Electron.BrowserWindow | null;
