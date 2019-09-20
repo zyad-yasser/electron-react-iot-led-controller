@@ -1,11 +1,10 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import App from './App';
-import './index.sass';
+import AppComponent from './app.component';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <App />,
+  <AppComponent />,
   document.getElementById('root') as HTMLElement
 );
 

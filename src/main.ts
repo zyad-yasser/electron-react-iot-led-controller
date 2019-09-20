@@ -1,6 +1,9 @@
 import { app, BrowserWindow, ipcMain } from "electron";
 import * as isDev from "electron-is-dev";
 import * as path from "path";
+
+process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = 'true';
+
 let mainWindow: Electron.BrowserWindow | null;
 
 function createWindow() {
@@ -17,16 +20,17 @@ function createWindow() {
       ? "http://localhost:3000"
       : `file://${path.join(__dirname, "../build/index.html")}`
   );
-  mainWindow.on("closed", () => (mainWindow = null));
+  mainWindow.on("closed", () => mainWindow = null);
   mainWindow.webContents.openDevTools();
+  mainWindow.setResizable(false);
 
-  ipcMain.on("btnclick",(event: any, arg: any) => {
-    console.log("received a aba !" + arg)
+  ipcMain.on("event",(event: any, arg: any) => {
+    console.log("event raised");
   });
   setTimeout(() => {
-    // @ts-ignore
-    mainWindow.webContents
-      .send('zoza', "FUF YOY")
+    if (mainWindow) {
+      mainWindow.webContents.send('event', {})
+    }
   }, 5000)
 }
 
