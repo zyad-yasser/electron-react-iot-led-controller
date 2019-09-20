@@ -2,6 +2,11 @@ import { app, BrowserWindow, ipcMain } from "electron";
 import * as isDev from "electron-is-dev";
 import * as path from "path";
 
+const usb = require('usb');
+usb.on('attach', (device: any) => {
+  console.log(device);
+});
+
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = 'true';
 
 let mainWindow: Electron.BrowserWindow | null;

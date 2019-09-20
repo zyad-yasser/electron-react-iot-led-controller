@@ -55,6 +55,7 @@
     "tslint-config-prettier": "^1.10.0",
     "tslint-react": "^3.2.0",
     "url-loader": "1.1.1",
+    "usb": "^1.6.0",
     "wait-on": "^3.2.0",
     "webpack": "4.19.1",
     "webpack-dev-server": "3.1.9",
@@ -66,6 +67,7 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "tsc-electron": "tsc ./src/main.ts --outDir ./dist",
+    "rebuild": "electron-rebuild -f -w",
     "dev": "concurrently \"npm start\" \"wait-on http://localhost:3000 && npm run tsc-electron && electron .\""
   },
   "eslintConfig": {
@@ -78,16 +80,17 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "concurrently": "^4.1.0",
-    "electron": "^5.0.1",
-    "electron-builder": "^20.39.0",
+    "@types/electron": "^1.6.10",
+    "@types/electron-is-dev": "^1.1.1",
     "@types/jest": "^24.0.12",
     "@types/node": "^12.0.0",
     "@types/react": "^16.8.17",
     "@types/react-dom": "^16.8.4",
     "@types/webpack": "^4.4.31",
-    "@types/electron": "^1.6.10",
-    "@types/electron-is-dev": "^1.1.1",
+    "concurrently": "^4.1.0",
+    "electron": "^5.0.1",
+    "electron-builder": "^20.39.0",
+    "electron-rebuild": "^1.8.6",
     "typescript": "^3.4.5"
   },
   "main": "./dist/main.js",
