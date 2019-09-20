@@ -1,14 +1,12 @@
-import { ipcRenderer } from "electron";
+const { ipcRenderer } = require('electron');
 import * as React from 'react';
 import * as styles from './App.sass';
 import logo from './logo.svg';
 
 class App extends React.Component {
   public emitMe() {
-    // const arg ="secondparam";
-    // ipcRenderer.send("btnclick", arg);
-    // @ts-ignore
-    console.log(ipcRenderer);
+    const arg ="ZKR";
+    ipcRenderer.send("btnclick", arg);
   }
   public render() {
     return (
