@@ -23,6 +23,11 @@ function createWindow() {
   ipcMain.on("btnclick",(event: any, arg: any) => {
     console.log("received a aba !" + arg)
   });
+  setTimeout(() => {
+    // @ts-ignore
+    mainWindow.webContents
+      .send('zoza', "FUF YOY")
+  }, 5000)
 }
 
 app.on("ready", createWindow);

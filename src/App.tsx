@@ -8,6 +8,11 @@ class App extends React.Component {
     const arg ="ZKR";
     ipcRenderer.send("btnclick", arg);
   }
+  public componentDidMount() {
+    ipcRenderer.on("zoza", ()=> {
+      console.log("A ZOZZA EMMITTED AHO A ABA !")
+    });
+  }
   public render() {
     return (
       <div className={styles.app}>
