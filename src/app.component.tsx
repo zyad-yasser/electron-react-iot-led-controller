@@ -21,7 +21,7 @@ class AppComponent extends React.Component {
       Cylon.robot({
         // Change the port to the correct port for your Arduino.
         connections: {
-          arduino: { adaptor: 'firmata', port: 'COM5' }
+          arduino: { adaptor: 'firmata', port: 'COM4' }
         },
       
         devices: {
@@ -37,7 +37,7 @@ class AppComponent extends React.Component {
         }
       }).start();
     } catch(err) {
-
+      console.log(err)
     }
   }
   public render() {

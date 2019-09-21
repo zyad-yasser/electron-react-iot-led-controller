@@ -1,17 +1,9 @@
 import { app, BrowserWindow, ipcMain } from "electron";
 import * as isDev from "electron-is-dev";
 import * as path from "path";
+import { SerialPort } from './controllers/serial-port/serial-port.controller';
 
-const usb = require('usb');
-usb.on('attach', (device: any) => {
-  console.log(device);
-});
-
-usb.on('detach', (device: any) => {
-  console.log(device);
-});
-
-process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = 'true';
+require('dotenv').config();
 
 let mainWindow: Electron.BrowserWindow | null;
 
@@ -22,7 +14,8 @@ function createWindow() {
       nodeIntegration: true,
       webSecurity: false
     },
-    width: 900
+    width: 900,
+    frame: false
   });
   mainWindow.loadURL(
     isDev
@@ -36,11 +29,12 @@ function createWindow() {
   ipcMain.on("event",(event: any, arg: any) => {
     console.log("event raised");
   });
-  setTimeout(() => {
+
+  mainWindow.webContents.once('dom-ready', () => {
     if (mainWindow) {
-      mainWindow.webContents.send('event', {})
+      mainWindow.webContents.send('event', {});
     }
-  }, 5000)
+  });
 }
 
 app.on("ready", createWindow);
@@ -56,3 +50,6 @@ app.on("activate", () => {
     createWindow();
   }
 });
+
+const zz = new SerialPort();
+console.log(zz);
