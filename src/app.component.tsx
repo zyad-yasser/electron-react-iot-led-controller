@@ -12,7 +12,7 @@ class AppComponent extends React.Component {
   }
   public componentDidMount() {
     // Attach event receivers
-    ipcRenderer.on("event", (data: any)=> {
+    ipcRenderer.on("connected", (emitter: any, data:any)=> {
       console.log(data);
     });
     

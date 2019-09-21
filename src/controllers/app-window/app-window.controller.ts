@@ -2,15 +2,13 @@ import { BrowserWindow } from "electron";
 import { windowConfig } from "../../constants";
 import * as isDev from "electron-is-dev";
 import * as path from "path";
-import { IEvents } from 'src/models/ievents.model';
+import { IAppWindow } from '../../models/iapp-window.model';
+import eventEmitter from '../event-emitter/event-emitter.controller';
 
-export class AppWindow {
-  public window: BrowserWindow | null;
-  constructor(private events: IEvents) {
-    this.init();
-    this.attachEvents();
-  }
-  private init() {
+class AppWindow implements IAppWindow {
+	public window: Electron.BrowserWindow | null;
+  constructor() {}
+  public init() {
     this.window = new BrowserWindow({
       height: windowConfig.height,
       width: windowConfig.width,
@@ -26,20 +24,19 @@ export class AppWindow {
         : `file://${path.join(__dirname, "../build/index.html")}`
     );
     this.window.webContents.openDevTools();
-    this.window.setResizable(false);
+		this.window.setResizable(false);
+		this.attachEvents();
   }
 
   private attachEvents() {
     if (this.window) {
 			this.window
 				.on("closed", () => (this.window = null));
-
-      this.window.webContents.once("dom-ready", () => {
-				if (this.window) {
-					this.window.webContents.send("event", {});
-				}
+			this.window.webContents.once("dom-ready", () => {
+				eventEmitter.emit('dom-ready');
 			});
-			this.events.emit(this.window);
     }
   }
 }
+
+export default new AppWindow();
