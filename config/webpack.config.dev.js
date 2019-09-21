@@ -402,7 +402,8 @@ module.exports = {
       publicPath: publicPath,
     }),
     new webpack.ExternalsPlugin('commonjs', [
-      'electron'
+      'electron', 'johnny-five',
+      'cylon-firmata', 'cylon-gpio', 'cylon-i2c', 'cylon'
     ])
   ],
 

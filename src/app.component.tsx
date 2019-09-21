@@ -15,6 +15,30 @@ class AppComponent extends React.Component {
     ipcRenderer.on("event", (data: any)=> {
       console.log(data);
     });
+    
+    try {
+      const Cylon = require("cylon");
+      Cylon.robot({
+        // Change the port to the correct port for your Arduino.
+        connections: {
+          arduino: { adaptor: 'firmata', port: 'COM5' }
+        },
+      
+        devices: {
+          led: { driver: 'led', pin: 11 }
+        },
+        
+        // @ts-ignore
+        work (my: any) {
+          // @ts-ignore
+          every((1).second(), function() {
+            my.led.toggle();
+          });
+        }
+      }).start();
+    } catch(err) {
+
+    }
   }
   public render() {
     return (

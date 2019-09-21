@@ -490,7 +490,7 @@ module.exports = {
       ],
     }),
     new webpack.ExternalsPlugin('commonjs', [
-      'electron'
+      'electron', 'johnny-five', 'cylon-firmata', 'cylon-gpio', 'cylon-i2c', 'cylon'
     ])
   ],
   // Some libraries import Node modules but don't use them in the browser.
