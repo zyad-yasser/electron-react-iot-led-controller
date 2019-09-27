@@ -13,7 +13,7 @@ eventEmitter.on("dom-ready", () => {
     }
 })
 
-eventEmitter.on("connected", (ports) => {
+eventEmitter.on("connected", async (ports) => {
     events.emit(appWindow.window, "connected", ports);
 });
 
