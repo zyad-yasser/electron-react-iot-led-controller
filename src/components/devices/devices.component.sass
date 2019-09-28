@@ -1,10 +1,52 @@
 .devices
+    font-weight: 300
     width: 100%
     height: 80px
-    background-color: #000
     color: #FFF
     display: flex
     align-items: center
     justify-content: space-between
     border-bottom: 1px solid #d34a47
     position: relative
+    .content
+        width: 100%
+        margin-left: 20px
+        margin-right: 20px
+        display: flex
+        align-items: center
+        justify-content: space-between
+        .left
+            display: flex
+            align-items: center
+            justify-content: flex-start
+            .info
+                margin-left: 6px
+                .online
+                    color: #1eff00
+                    font-weight: 700
+                .offline
+                    color: #ff0000
+                    font-weight: 700
+        .right
+            .switch
+                height: 40px
+                width: 40px
+                background-color: #444
+                border-radius: 100%
+                display: flex
+                align-items: center
+                justify-content: center
+                border: 0px
+                &:hover
+                    background-color: #777
+                    cursor: pointer
+                &.on
+                    background-color: #d34a47
+                    box-shadow: 0px 0px 7px 0px rgba(211,74,71,1)
+                    &:hover
+                        background-color: #ad3e3c
+                        cursor: pointer
+            .switch[disabled]
+                opacity: 0.5
+                cursor: default !important
+                pointer-events: none !important
