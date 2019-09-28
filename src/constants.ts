@@ -27,3 +27,12 @@ export const pages: Page[] = [
         name: "Rainbow"
     },
 ]
+
+export const defaultState = {
+    colors: {
+        red: 255,
+        green: 255,
+        blue: 255
+      },
+      mode: 'static'
+}

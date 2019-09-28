@@ -4,7 +4,7 @@ import DevicesComponent from "../devices/devices.component";
 import "./layout.component.sass";
 import SectionsComponent from '../sections/sections.component';
 
-class LayoutComponent extends React.Component {
+class LayoutComponent extends React.Component<any> {
   public render() {
     return (
       <div className="layout">
@@ -14,7 +14,7 @@ class LayoutComponent extends React.Component {
         <div className="content">
           <TitlebarComponent />
           <DevicesComponent />
-          <SectionsComponent />
+          <SectionsComponent/>
         </div>
       </div>
     );
