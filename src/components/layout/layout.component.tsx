@@ -1,12 +1,15 @@
 import * as React from 'react';
+import TitlebarComponent from '../title-bar/title-bar.component';
 
 class LayoutComponent extends React.Component {
   public render() {
     return (
-      <div>
-        Hello from layout
-        {this.props.children}
-      </div>
+      <>
+        <TitlebarComponent />
+        <div>
+          {this.props.children}
+        </div>
+      </>
     );
   }
 }
