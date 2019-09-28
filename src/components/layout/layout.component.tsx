@@ -2,6 +2,7 @@ import * as React from "react";
 import TitlebarComponent from "../title-bar/title-bar.component";
 import DevicesComponent from "../devices/devices.component";
 import "./layout.component.sass";
+import SectionsComponent from '../sections/sections.component';
 
 class LayoutComponent extends React.Component {
   public render() {
@@ -13,7 +14,7 @@ class LayoutComponent extends React.Component {
         <div className="content">
           <TitlebarComponent />
           <DevicesComponent />
-          <div>{this.props.children}</div>
+          <SectionsComponent />
         </div>
       </div>
     );
