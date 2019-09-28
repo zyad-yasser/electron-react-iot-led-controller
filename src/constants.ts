@@ -20,6 +20,10 @@ export const boardConfig: BoardConfig = {
 export const pages: Page[] = [
     {
         id: 0,
-        name: "static"
-    }
+        name: "Static"
+    },
+    {
+        id: 1,
+        name: "Rainbow"
+    },
 ]
