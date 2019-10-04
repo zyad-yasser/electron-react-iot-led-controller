@@ -29,7 +29,8 @@ class AppComponent extends React.Component {
     eventEmitter.on('apply', () => {
       const colors = this.state.colors;
       const mode = this.state.mode;
-      this.board.connection.work = work(colors, mode);
+      const newWork = work(colors, mode);
+      this.board.reconnect(newWork);
     });
 
     eventEmitter.on('default', () => {

@@ -1,27 +1,22 @@
 import { boardConfig } from "../../constants"
 
 // Cylon.js logic
-class Logic {
+export class Logic {
   public devices: any;
   public work: any;
   public connections: any;
 
-  constructor() {
+  constructor(work: any) {
 		this.connections = {
       arduino: {
         adaptor: boardConfig.adaptor
       }
     };
     this.devices = {
-      led: { driver: "led", pin: 11 }
+      red: { driver: "led", pin: 10 },
+      green: { driver: "led", pin: 11 },
+      blue: { driver: "led", pin: 6 },
     };
-    this.work = (devices: any) => {
-      // @ts-ignore
-      every((1).second(), function() {
-        devices.led.toggle();
-      });
-    };
-	}
+    this.work = work;
+  }
 }
-
-export default new Logic();

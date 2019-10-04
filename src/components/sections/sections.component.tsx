@@ -5,6 +5,7 @@ import TypesComponent from '../types/types.component';
 import StaticComponent from '../static/static.component';
 import RainbowComponent from '../rainbow/rainbow.component';
 import ActionsComponent from '../actions/actions.component';
+import AllColorsComponent from '../all-colors/all-colors.component';
 
 class SectionsComponent extends React.Component<any> {
   public state = {
@@ -20,8 +21,10 @@ class SectionsComponent extends React.Component<any> {
   public renderSwitch() {
     switch (this.state.active) {
       case 0:
-        return <StaticComponent />
+        return <AllColorsComponent />
       case 1:
+        return <StaticComponent />
+      case 2:
         return <RainbowComponent />
       default:
         return <StaticComponent />

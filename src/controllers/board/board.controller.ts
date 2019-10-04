@@ -1,4 +1,5 @@
-import logic from "../logic/logic.controller";
+import { Logic } from "../logic/logic.controller";
+import { work } from 'src/helpers/work/work.helper';
 const Cylon = require("cylon");
 
 export class Board {
@@ -6,10 +7,20 @@ export class Board {
   public port: string;
 	private portIndex: number;
   private tempConnection: any = null;
-  private logic = logic;
-	
+  private logic: any;
+
   constructor(private serialPorts: string[]) {
+    this.initLogic();
     this.serialPortCheck();
+  }
+
+  public reconnect(work: any) {
+    this.connection.work = work
+    this.connection.startWork();
+  }
+
+  private initLogic() {
+    this.logic = new Logic(work());
   }
 
 	private connect(port: string): void {

@@ -15,7 +15,7 @@ class ActionsComponent extends React.Component<any> {
   }
 
   public setApply = () => {
-    eventEmitter.emit("work-change");
+    eventEmitter.emit("apply");
     const changed = false;
     this.setState({...this.state, changed})
   }
