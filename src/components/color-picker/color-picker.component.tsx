@@ -21,6 +21,12 @@ class ColorPickerComponent extends React.Component<any> {
     this.props.onChange(rgb);
   };
 
+  public componentDidMount() {
+    const { hue, saturation, luminosity } = this.state;
+    const rgb = hslaToRgb({ hue, saturation, luminosity });
+    this.props.onChange(rgb);
+  }
+
   public render() {
     return <ColorPicker {...this.state} onChange={this.onChange} />;
   }

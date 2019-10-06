@@ -15,7 +15,8 @@ class AppComponent extends React.Component {
       green: 255,
       blue: 255
     },
-    mode: 'static'
+    mode: 'static',
+    speed: 2
   }
 
   public handleEvents() {
@@ -27,9 +28,8 @@ class AppComponent extends React.Component {
       this.board = null;
     });
     eventEmitter.on('apply', () => {
-      const colors = this.state.colors;
-      const mode = this.state.mode;
-      const newWork = work(colors, mode);
+      const { colors, mode, speed } = this.state;
+      const newWork = work(colors, mode, speed);
       this.board.reconnect(newWork);
     });
 
@@ -40,8 +40,8 @@ class AppComponent extends React.Component {
       this.board.connection.work = work(colors, mode);
     });
 
-    eventEmitter.on('change', ({colors, mode}: any) => {
-      this.setState({...this.state, colors, mode});
+    eventEmitter.on('change', ({colors, mode, speed}: any) => {
+      this.setState({...this.state, colors, mode, speed});
     });
   }
 

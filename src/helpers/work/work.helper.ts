@@ -32,7 +32,9 @@ export const work = (colors?: any, mode?: string, speed?: number) => {
         const maxValue = 255;
         const minValue = 0;
         const leds = robot.devices;
-        const animationSpeed = (((speed || minValue) * 1000) / 30) * maxValue || 20;
+        const animationSpeed = speed
+          ? ((3 * 30 * 255) / (speed * 1000))
+          : 1;
 
         const changer = (color: string, type: string, speed: number): void => {
           const led = leds[color];

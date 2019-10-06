@@ -12,7 +12,12 @@ class AllColorsComponent extends React.Component<any> {
   public render() {
     return (
       <div className="page all-colors">
-        All colors
+        <div>
+        <div className="main-logo">
+          <img src="images/logo-big.png" width="300px" height="300px" />
+        </div>
+        <div className="text-w">Default mode with all colors</div>
+        </div>
       </div>
     );
   }
