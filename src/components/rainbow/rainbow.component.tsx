@@ -13,6 +13,14 @@ class RainbowComponent extends React.Component<any> {
     this.setState({...this.state, speed})
     eventEmitter.emit('change', {colors, mode, speed});
   }
+
+  public componentDidMount() {
+    const mode = 'Rainbow';
+    const colors = null;
+    const speed = this.state.speed;
+    eventEmitter.emit('change', {colors, mode, speed});
+  }
+
   public render() {
     return (
       <div className="page rainbow">

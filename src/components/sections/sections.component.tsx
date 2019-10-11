@@ -6,6 +6,7 @@ import StaticComponent from '../static/static.component';
 import RainbowComponent from '../rainbow/rainbow.component';
 import ActionsComponent from '../actions/actions.component';
 import AllColorsComponent from '../all-colors/all-colors.component';
+import MusicComponent from '../music/music.component';
 
 class SectionsComponent extends React.Component<any> {
   public state = {
@@ -26,6 +27,8 @@ class SectionsComponent extends React.Component<any> {
         return <StaticComponent />
       case 2:
         return <RainbowComponent />
+      case 3:
+        return <MusicComponent />
       default:
         return <StaticComponent />
     }

@@ -1,4 +1,9 @@
+import eventEmitter from '../react-events/react-events.helper';
 export const work = (colors?: any, mode?: string, speed?: number) => {
+  let isRunnig = true;
+  eventEmitter.on('apply', () => {
+    isRunnig = false
+  });
   switch (mode) {
     case "Static":
       return (robot: any) => {
@@ -53,7 +58,11 @@ export const work = (colors?: any, mode?: string, speed?: number) => {
               : value;
             colorsState[color].value = value;
             led.brightness(value);
-            setTimeout(() => changer(color, type, speed), 30);
+            setTimeout(() => {
+              if (isRunnig) {
+                changer(color, type, speed)
+              }
+            }, 30);
           } else {
             runner();
           }
@@ -87,6 +96,30 @@ export const work = (colors?: any, mode?: string, speed?: number) => {
           }
         };
         runner();
+      };
+
+    case "Music":
+      return (robot: any) => {
+        let isRunning = true;
+        eventEmitter.on("change", () => {
+          isRunning = false;
+        });
+        const { red, green, blue } = robot.devices;
+        red.turnOn();
+        green.turnOn();
+        blue.turnOn();
+        eventEmitter.on("music", (volume: any) => {
+          if (isRunning) {
+            const value = volume * 255 > 255
+              ? 255
+              : volume * 255 < 0
+              ? 0
+              :volume * 255;
+            red.brightness(value);
+            green.brightness(value);
+            blue.brightness(value);
+          }
+        })
       };
 
     default:

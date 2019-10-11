@@ -30,6 +30,10 @@ export const pages: Page[] = [
         id: 2,
         name: "Rainbow"
     },
+    {
+        id: 3,
+        name: "Music"
+    },
 ]
 
 export const defaultState = {
