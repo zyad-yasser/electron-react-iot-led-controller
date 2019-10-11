@@ -6,9 +6,11 @@ let mediaStreamSource = null;
 let running = true;
 
 const repeat = () => {
-	eventEmitter.emit("music", meter.volume);
-	if (running) {
-		setTimeout(repeat, 30);
+  if (audioContext) {
+    eventEmitter.emit("music", meter.volume);
+  } 
+	if (running && meter) {
+		setTimeout(repeat, 10);
 	}
 }
 
@@ -17,8 +19,10 @@ eventEmitter.on("change", () => {
 });
 
 eventEmitter.on("apply", (data: any) => {
-	running = true;
-	repeat();
+  if (audioContext) {
+    running = true;
+    repeat();
+  }
 });
 
 function createAudioMeter(

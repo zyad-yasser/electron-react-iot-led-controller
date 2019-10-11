@@ -27,6 +27,7 @@ class AppComponent extends React.Component {
     ipcRenderer.on("disconnected", (emitter: any, data: any) => {
       this.board = null;
     });
+
     eventEmitter.on('apply', () => {
       const { colors, mode, speed } = this.state;
       const newWork = work(colors, mode, speed);
@@ -37,7 +38,8 @@ class AppComponent extends React.Component {
       const colors = defaultState.colors;
       const mode = defaultState.mode;
       this.setState({...this.state, colors, mode});
-      this.board.connection.work = work(colors, mode);
+      const newWork = work(colors, mode);
+      this.board.reconnect(newWork);
     });
 
     eventEmitter.on('change', ({colors, mode, speed}: any) => {
