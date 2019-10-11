@@ -122,6 +122,14 @@ export const work = (colors?: any, mode?: string, speed?: number) => {
         })
       };
 
+    case "Off":
+      return (robot: any) => {
+        const { red, green, blue } = robot.devices;
+        red.turnOff();
+        green.turnOff();
+        blue.turnOff();
+      };
+
     default:
       return (robot: any) => {
         const { red, green, blue } = robot.devices;

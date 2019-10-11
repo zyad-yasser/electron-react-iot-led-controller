@@ -44,3 +44,5 @@ export const defaultState = {
       },
       mode: 'static'
 }
+
+export const development = process.env.DEVELOPMENT || false; 

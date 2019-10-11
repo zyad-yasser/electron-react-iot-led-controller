@@ -21,15 +21,35 @@ class AppComponent extends React.Component {
 
   public handleEvents() {
     ipcRenderer.on("connected", (emitter: any, ports: string[]) => {
-      this.board = new Board(ports);
+      try {
+        this.board = new Board(ports);
+        eventEmitter.emit('connected');
+      } catch(err) {
+        // Handle error
+      }
     });
 
     ipcRenderer.on("disconnected", (emitter: any, data: any) => {
       this.board = null;
+      eventEmitter.emit('disconnected');
     });
 
     eventEmitter.on('apply', () => {
       const { colors, mode, speed } = this.state;
+      const newWork = work(colors, mode, speed);
+      this.board.reconnect(newWork);
+    });
+
+    eventEmitter.on('off', () => {
+      const { colors, speed } = this.state;
+      const mode = "Off";
+      const newWork = work(colors, mode, speed);
+      this.board.reconnect(newWork);
+    });
+
+    eventEmitter.on('on', () => {
+      const { colors, speed } = this.state;
+      const mode = "On";
       const newWork = work(colors, mode, speed);
       this.board.reconnect(newWork);
     });

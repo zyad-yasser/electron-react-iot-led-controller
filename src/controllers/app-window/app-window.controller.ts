@@ -1,5 +1,5 @@
 import { BrowserWindow } from "electron";
-import { windowConfig } from "../../constants";
+import { windowConfig, development } from "../../constants";
 import * as isDev from "electron-is-dev";
 import * as path from "path";
 import { IAppWindow } from '../../models/iapp-window.model';
@@ -23,7 +23,10 @@ class AppWindow implements IAppWindow {
         ? "http://localhost:3000"
         : `file://${path.join(__dirname, "../build/index.html")}`
     );
-    this.window.webContents.openDevTools();
+    if (development) {
+      this.window.webContents.openDevTools();
+    }
+    
 		this.window.setResizable(false);
 		this.attachEvents();
   }

@@ -20,10 +20,18 @@ class ActionsComponent extends React.Component<any> {
     this.setState({...this.state, changed})
   }
 
+  public setDefault = () => {
+    eventEmitter.emit("default");
+    setTimeout(() => {
+      const changed = false;
+      this.setState({...this.state, changed})
+    }, 0);
+  }
+
   public render() {
     return (
       <div className="actions">
-        <button className="btn-action default">Default</button>
+        <button className="btn-action default" onClick={this.setDefault}>Default</button>
         {
           // @ts-ignore
           <button className="btn-action apply" onClick={this.setApply} disabled={!this.state.changed ? 'disabled' : ''}>Apply</button>

@@ -15,7 +15,6 @@ export class Board {
   }
 
   public reconnect(work: any) {
-    console.log(this.connection)
     this.connection.work = work;
     this.connection.startWork();
   }
