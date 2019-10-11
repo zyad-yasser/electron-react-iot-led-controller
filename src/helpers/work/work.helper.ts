@@ -1,8 +1,17 @@
 import eventEmitter from '../react-events/react-events.helper';
 export const work = (colors?: any, mode?: string, speed?: number) => {
-  let isRunnig = true;
+  let isRunning = true;
   eventEmitter.on('apply', () => {
-    isRunnig = false
+    isRunning = false
+  });
+  eventEmitter.on("off", () => {
+    isRunning = false;
+  });
+  eventEmitter.on("change", () => {
+    isRunning = false;
+  });
+  eventEmitter.on("off", () => {
+    isRunning = false;
   });
   switch (mode) {
     case "Static":
@@ -59,7 +68,7 @@ export const work = (colors?: any, mode?: string, speed?: number) => {
             colorsState[color].value = value;
             led.brightness(value);
             setTimeout(() => {
-              if (isRunnig) {
+              if (isRunning) {
                 changer(color, type, speed)
               }
             }, 30);
@@ -100,10 +109,6 @@ export const work = (colors?: any, mode?: string, speed?: number) => {
 
     case "Music":
       return (robot: any) => {
-        let isRunning = true;
-        eventEmitter.on("change", () => {
-          isRunning = false;
-        });
         const { red, green, blue } = robot.devices;
         red.turnOn();
         green.turnOn();

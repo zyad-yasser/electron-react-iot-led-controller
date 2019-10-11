@@ -48,8 +48,7 @@ class AppComponent extends React.Component {
     });
 
     eventEmitter.on('on', () => {
-      const { colors, speed } = this.state;
-      const mode = "On";
+      const { colors, speed, mode } = this.state;
       const newWork = work(colors, mode, speed);
       this.board.reconnect(newWork);
     });
